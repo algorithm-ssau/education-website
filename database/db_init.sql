@@ -2,8 +2,10 @@
 -- Please log an issue at https://github.com/pgadmin-org/pgadmin4/issues/new/choose if you find any bugs, including reproduction steps.
 BEGIN;
 
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
-CREATE TABLE IF NOT EXISTS public."user"
+CREATE TABLE public."user"
 (
     id uuid,
     name character varying(100) NOT NULL,
@@ -16,7 +18,7 @@ CREATE TABLE IF NOT EXISTS public."user"
     UNIQUE (email)
 );
 
-CREATE TABLE IF NOT EXISTS public.refresh_token
+CREATE TABLE public.refresh_token
 (
     id uuid,
     token character(24) NOT NULL,
@@ -25,7 +27,7 @@ CREATE TABLE IF NOT EXISTS public.refresh_token
     UNIQUE (token)
 );
 
-CREATE TABLE IF NOT EXISTS public.file
+CREATE TABLE public.file
 (
     id uuid,
     path character varying(250) NOT NULL,
@@ -33,7 +35,7 @@ CREATE TABLE IF NOT EXISTS public.file
     UNIQUE (path)
 );
 
-CREATE TABLE IF NOT EXISTS public.course
+CREATE TABLE public.course
 (
     id uuid,
     name text NOT NULL,
@@ -45,15 +47,16 @@ CREATE TABLE IF NOT EXISTS public.course
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.student
+CREATE TABLE public.student
 (
     course_id uuid,
     user_id uuid,
-    PRIMARY KEY (course_id, user_id),
-    UNIQUE (course_id, user_id)
+	content text,
+	score numeric,
+    PRIMARY KEY (course_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS public.course_block
+CREATE TABLE public.course_block
 (
     id uuid,
     type character varying(10) NOT NULL CHECK(type in ('theory', 'info', 'task')),
@@ -66,35 +69,36 @@ CREATE TABLE IF NOT EXISTS public.course_block
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.tag
+CREATE TABLE public.tag
 (
     id uuid NOT NULL,
     name character varying(20) NOT NULL,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.tag_course
+CREATE TABLE public.tag_course
 (
     tag_id uuid NOT NULL,
     course_id uuid,
     PRIMARY KEY (tag_id, course_id)
 );
 
-CREATE TABLE IF NOT EXISTS public.course_admin
+CREATE TABLE public.course_admin
 (
+	id uuid NOT NULL,
     course_id uuid,
     user_id uuid,
-    PRIMARY KEY (course_id, user_id)
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.task_answer_file
+CREATE TABLE public.task_answer_file
 (
     task_answer_id uuid,
     file_id uuid,
     PRIMARY KEY (task_answer_id, file_id)
 );
 
-CREATE TABLE IF NOT EXISTS public.notification
+CREATE TABLE public.notification
 (
     id uuid,
     title character varying(20) NOT NULL,
@@ -104,7 +108,7 @@ CREATE TABLE IF NOT EXISTS public.notification
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.test
+CREATE TABLE public.test
 (
     id uuid,
     questions text[] NOT NULL,
@@ -112,16 +116,7 @@ CREATE TABLE IF NOT EXISTS public.test
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.course_review
-(
-    course_id uuid,
-    student_user_id uuid,
-    content text,
-    score numeric NOT NULL,
-    PRIMARY KEY (course_id, student_user_id)
-);
-
-CREATE TABLE IF NOT EXISTS public.student_course_block
+CREATE TABLE public.student_course_block
 (
     student_course_id uuid,
     student_user_id uuid,
@@ -132,8 +127,7 @@ CREATE TABLE IF NOT EXISTS public.student_course_block
     PRIMARY KEY (course_block_id, student_user_id, student_course_id)
 );
 
-
-CREATE TABLE IF NOT EXISTS public.task_answer
+CREATE TABLE public.task_answer
 (
     id uuid,
     content text NOT NULL,
@@ -144,194 +138,169 @@ CREATE TABLE IF NOT EXISTS public.task_answer
     PRIMARY KEY (id)
 );
 
--- ALTER TABLE IF EXISTS public."user"
---     ADD CONSTRAINT refresh_token_constraint FOREIGN KEY (refresh_token_id)
---     REFERENCES public.refresh_token (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public."user"
+     ADD CONSTRAINT refresh_token_constraint FOREIGN KEY (refresh_token_id)
+     REFERENCES public.refresh_token (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public."user"
---     ADD CONSTRAINT profile_image_constraint FOREIGN KEY (profile_image_id)
---     REFERENCES public.file (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public."user"
+     ADD CONSTRAINT profile_image_constraint FOREIGN KEY (profile_image_id)
+     REFERENCES public.file (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course
---     ADD CONSTRAINT image_constraint FOREIGN KEY (image_id)
---     REFERENCES public.file (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.course
+     ADD CONSTRAINT image_constraint FOREIGN KEY (image_id)
+     REFERENCES public.file (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course
---     ADD CONSTRAINT owner_constraint FOREIGN KEY (owner_id)
---     REFERENCES public."user" (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.course
+     ADD CONSTRAINT owner_constraint FOREIGN KEY (owner_id)
+     REFERENCES public."user" (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.student
---     ADD FOREIGN KEY (course_id)
---     REFERENCES public.course (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.student
+     ADD FOREIGN KEY (course_id)
+     REFERENCES public.course (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.student
---     ADD FOREIGN KEY (user_id)
---     REFERENCES public."user" (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.student
+     ADD FOREIGN KEY (user_id)
+     REFERENCES public."user" (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
+
+ALTER TABLE IF EXISTS public.course_block
+     ADD FOREIGN KEY (course_id)
+     REFERENCES public.course (id) MATCH SIMPLE
+     ON UPDATE NO ACTION
+     ON DELETE NO ACTION
+     NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_block
---     ADD FOREIGN KEY (course_id)
---     REFERENCES public.course (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.course_block
+    ADD FOREIGN KEY (test_id)
+	REFERENCES public.test (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_block
---     ADD FOREIGN KEY (test_id)
---     REFERENCES public.test (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.tag_course
+    ADD FOREIGN KEY (tag_id)
+    REFERENCES public.tag (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.tag_course
---     ADD FOREIGN KEY (tag_id)
---     REFERENCES public.tag (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.tag_course
+    ADD FOREIGN KEY (course_id)
+    REFERENCES public.course (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.tag_course
---     ADD FOREIGN KEY (course_id)
---     REFERENCES public.course (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.course_admin
+    ADD FOREIGN KEY (course_id)
+    REFERENCES public.course (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_admin
---     ADD FOREIGN KEY (course_id)
---     REFERENCES public.course (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.course_admin
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public."user" (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_admin
---     ADD FOREIGN KEY (user_id)
---     REFERENCES public."user" (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.task_answer_file
+    ADD FOREIGN KEY (file_id)
+    REFERENCES public.file (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.task_answer_file
---     ADD FOREIGN KEY (file_id)
---     REFERENCES public.file (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.task_answer_file
+    ADD FOREIGN KEY (task_answer_id)
+    REFERENCES public.task_answer (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.task_answer_file
---     ADD FOREIGN KEY (task_answer_id)
---     REFERENCES public.task_answer (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.notification
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public."user" (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.notification
---     ADD FOREIGN KEY (user_id)
---     REFERENCES public."user" (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.student_course_block
+    ADD FOREIGN KEY (student_user_id, student_course_id)
+    REFERENCES public.student (user_id, course_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_review
---     ADD FOREIGN KEY (course_id)
---     REFERENCES public.course (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.student_course_block
+    ADD FOREIGN KEY (course_block_id)
+    REFERENCES public.course_block (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.course_review
---     ADD FOREIGN KEY (student_user_id)
---     REFERENCES public.student (user_id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.student_course_block
+    ADD FOREIGN KEY (task_answer_id)
+    REFERENCES public.task_answer (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
 
--- ALTER TABLE IF EXISTS public.student_course_block
---     ADD FOREIGN KEY (student_user_id)
---     REFERENCES public.student (user_id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
+ALTER TABLE IF EXISTS public.task_answer
+    ADD FOREIGN KEY (teacher_id)
+    REFERENCES public.course_admin (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
 
+CREATE OR REPLACE FUNCTION check_score_max_score()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.score > (SELECT max_score FROM course_block WHERE id = NEW.course_block_id) THEN
+            RAISE EXCEPTION 'Score cannot be greater than max_score';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
--- ALTER TABLE IF EXISTS public.student_course_block
---     ADD FOREIGN KEY (course_block_id)
---     REFERENCES public.course_block (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
-
-
--- ALTER TABLE IF EXISTS public.student_course_block
---     ADD FOREIGN KEY (student_course_id)
---     REFERENCES public.student (course_id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
-
-
--- ALTER TABLE IF EXISTS public.student_course_block
---     ADD FOREIGN KEY (task_answer_id)
---     REFERENCES public.task_answer (id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
-
-
--- ALTER TABLE IF EXISTS public.task_answer
---     ADD FOREIGN KEY (teacher_id)
---     REFERENCES public.course_admin (user_id) MATCH SIMPLE
---     ON UPDATE NO ACTION
---     ON DELETE NO ACTION
---     NOT VALID;
-
--- CREATE OR REPLACE FUNCTION check_score_max_score()
--- RETURNS TRIGGER AS
--- $$
--- BEGIN
---     IF NEW.score > (SELECT max_score FROM course_block WHERE id = NEW.course_block_id) THEN
---             RAISE EXCEPTION 'Score cannot be greater than max_score';
---     END IF;
---     RETURN NEW;
--- END;
--- $$ LANGUAGE plpgsql;
-
--- CREATE TRIGGER check_score_max_score_trigger
--- BEFORE INSERT OR UPDATE ON student_course_block
--- FOR EACH ROW
--- EXECUTE FUNCTION check_score_max_score();
+CREATE TRIGGER check_score_max_score_trigger
+BEFORE INSERT OR UPDATE ON student_course_block
+FOR EACH ROW
+EXECUTE FUNCTION check_score_max_score();
 END;
