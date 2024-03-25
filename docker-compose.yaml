@@ -1,0 +1,12 @@
+services:
+  database:
+    build: database/
+    secrets:
+      - db-password
+    environment:
+      - POSTGRES_PASSWORD=/run/secrets/db-password
+
+secrets:
+  db-password:
+    file: database/password.txt
+  
