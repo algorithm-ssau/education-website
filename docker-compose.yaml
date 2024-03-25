@@ -4,7 +4,10 @@ services:
     secrets:
       - db-password
     environment:
-      - POSTGRES_PASSWORD=/run/secrets/db-password
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - 54321:5432
 
 secrets:
   db-password:
