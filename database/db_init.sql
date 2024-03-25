@@ -51,8 +51,8 @@ CREATE TABLE public.student
 (
     course_id uuid,
     user_id uuid,
-	content text,
-	score numeric,
+	review_content text,
+	review_score numeric,
     PRIMARY KEY (course_id, user_id)
 );
 
