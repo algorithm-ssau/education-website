@@ -1,0 +1,15 @@
+services:
+  database:
+    build: database/
+    secrets:
+      - db-password
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - 54321:5432
+
+secrets:
+  db-password:
+    file: database/password.txt
+  
