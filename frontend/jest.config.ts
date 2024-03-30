@@ -9,8 +9,8 @@ const config: Config = {
   moduleDirectories: ['src', 'node_modules'],
   modulePaths: ['<rootDir>'],
   transform: {
-    '\\.html$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
-  }
+    '\\.html$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+  },
 };
 
 export default config;

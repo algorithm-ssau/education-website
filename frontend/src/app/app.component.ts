@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module';
   standalone: true,
   imports: [CommonModule, RouterOutlet, CoreModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-}
+export class AppComponent {}

@@ -10,6 +10,7 @@
     "test:coverage": "jest --coverage",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "format": "prettier --write \"./**/*.{js,ts,json,css,scss,less,md,ts,html,component.html}\"",
     "prepare": "husky",
     "prepare:upper-folder": "cd ../ && husky frontend/.husky"
   },
