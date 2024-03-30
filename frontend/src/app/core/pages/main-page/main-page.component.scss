@@ -1,0 +1,24 @@
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+.main__hello-text {
+  margin: 50px auto 0;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  padding: 10px;
+  width: 915px;
+  height: 250px;
+  border-radius: 100px;
+  font-weight: bold;
+  background-color: rgba(55, 211, 245, 0.35);
+  color: var(--secondary-dark-color);
+  text-align: center;
+}
+.main__hello-image {
+  display: block;
+  width: auto;
+  height: 496px;
+  margin: 0 auto;
+}
