@@ -8,15 +8,15 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
     "format": "prettier --write \"./**/*.{js,ts,json,css,scss,less,md,ts,html,component.html}\"",
     "prepare": "husky",
     "prepare:upper-folder": "cd ../ && husky frontend/.husky"
   },
   "lint-staged": {
-    "*.{js, ts}": [
-      "ng lint"
+    "*.{js,ts}": [
+      "npm run lint"
     ],
     "*.{js,json,css,scss,less,md,ts,html,component.html}": [
       "prettier --write"
