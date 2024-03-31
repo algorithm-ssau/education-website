@@ -1,16 +1,17 @@
 @import 'colors';
 @import 'mixins';
+@import 'functions';
 
 .header {
-  width: 100vw;
-  height: 85px;
+  width: 100%;
+  aspect-ratio: 1920 / 85;
 
   background-color: $header-footer-bg;
   font-family: Roboto;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.25rem;
 
-  padding: 9.5px 15px 0;
+  padding: to-responsive(9.5px) to-responsive(15px) 0;
 }
 
 .header__links {
@@ -19,13 +20,19 @@
 }
 
 .header__regular-button {
-  width: 380px;
-  height: 40px;
+  width: to-responsive(380px);
+  height: to-responsive(40px);
   background-color: $secondary-color;
-  border-radius: 75px;
+  border-radius: to-responsive(75px);
 
   @include flex();
 
   color: $secondary-light-color;
   font-weight: bold;
+}
+
+.header__home,
+.header__profile {
+  width: to-responsive(63px);
+  aspect-ratio: 63 / 65;
 }
