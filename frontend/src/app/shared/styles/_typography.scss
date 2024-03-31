@@ -1,3 +1,5 @@
+@import 'functions';
+
 @font-face {
   font-family: 'JejuHallasan';
   src: url(../../../assets/fonts/JejuHallasan-Regular.ttf);
@@ -16,4 +18,8 @@
 @font-face {
   font-family: 'Roboto';
   src: url(../../../assets/fonts/Roboto.ttf);
+}
+
+html {
+  font-size: to-responsive(16px);
 }
