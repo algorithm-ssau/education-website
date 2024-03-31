@@ -3,7 +3,7 @@
 @import 'functions';
 
 .footer {
-  width: 100vw;
+  width: 100%;
   aspect-ratio: 1920 / 85;
 
   @include flex();

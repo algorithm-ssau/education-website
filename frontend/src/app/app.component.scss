@@ -1,5 +1,5 @@
 @import 'functions';
 
 .main {
-  min-height: calc(100vh - to-responsive(85px) * 2 - to-responsive(49.4879px));
+  min-height: calc(100vh - to-responsive(85px) * 2);
 }

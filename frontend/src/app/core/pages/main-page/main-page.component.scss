@@ -2,14 +2,23 @@
 @import 'mixins';
 @import 'functions';
 
+:host {
+  display: block;
+  height: calc(100vh - to-responsive(85px) * 2);
+}
+
+.main__home-page {
+  height: 100%;
+  @include flex($direction: column, $gap: to-responsive(20px));
+}
+
 .main__hello-text {
   @include flex();
 
-  margin: to-responsive(50px) auto 0;
   padding: to-responsive(10px);
 
-  aspect-ratio: 915 / 250;
-  width: to-responsive(915px);
+  aspect-ratio: 908 / 247;
+  width: to-responsive(908px);
   border-radius: to-responsive(100px);
   background-color: rgba($secondary-color, 0.35);
 
@@ -21,7 +30,6 @@
 
 .main__hello-image {
   display: block;
-  width: auto;
-  height: to-responsive(496px);
-  margin: 0 auto;
+  width: to-responsive(625px);
+  height: auto;
 }
