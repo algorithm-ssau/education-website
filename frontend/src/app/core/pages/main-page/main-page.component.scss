@@ -1,26 +1,27 @@
 @import 'colors';
 @import 'mixins';
+@import 'functions';
 
 .main__hello-text {
   @include flex();
 
-  margin: 50px auto 0;
-  padding: 10px;
+  margin: to-responsive(50px) auto 0;
+  padding: to-responsive(10px);
 
-  width: 915px;
-  height: 250px;
-  border-radius: 100px;
+  aspect-ratio: 915 / 250;
+  width: to-responsive(915px);
+  border-radius: to-responsive(100px);
   background-color: rgba($secondary-color, 0.35);
 
   font-family: JejuHallasan;
   color: $secondary-dark-color;
   text-align: center;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .main__hello-image {
   display: block;
   width: auto;
-  height: 496px;
+  height: to-responsive(496px);
   margin: 0 auto;
 }
