@@ -8,6 +8,8 @@
   @include flex();
 
   background-color: $header-footer-bg;
+
   color: $secondary-color;
-  font-weight: bold;
+  font-weight: 800;
+  font-family: Roboto;
 }
