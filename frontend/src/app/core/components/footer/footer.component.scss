@@ -1,10 +1,13 @@
+@import 'colors';
+@import 'mixins';
+
 .footer {
   width: 100vw;
   height: 85px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--header-footer-bg);
-  color: var(--secondary-color);
+
+  @include flex();
+
+  background-color: $header-footer-bg;
+  color: $secondary-color;
   font-weight: bold;
 }

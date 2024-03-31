@@ -1,21 +1,23 @@
-@function HexToRGB($hex) {
-  @return red($hex), green($hex), blue($hex);
-}
+@import 'colors';
+@import 'mixins';
 
 .main__hello-text {
+  @include flex();
+
   margin: 50px auto 0;
-  display: flex;
-  align-items: center;
-  font-size: 32px;
   padding: 10px;
+
   width: 915px;
   height: 250px;
   border-radius: 100px;
+  background-color: rgba($secondary-color, 0.35);
+
   font-family: JejuHallasan;
-  background-color: rgba(55, 211, 245, 0.35);
-  color: var(--secondary-dark-color);
+  color: $secondary-dark-color;
   text-align: center;
+  font-size: 32px;
 }
+
 .main__hello-image {
   display: block;
   width: auto;

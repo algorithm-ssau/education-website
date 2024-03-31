@@ -1,31 +1,28 @@
+@import 'colors';
+@import 'mixins';
+
 .header {
   width: 100vw;
   height: 85px;
 
-  background-color: var(--header-footer-bg);
+  background-color: $header-footer-bg;
 
   padding: 9.5px 15px 0;
 }
 
 .header__links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  @include flex($justify-content: space-between);
   list-style: none;
 }
 
 .header__regular-button {
-  display: inline-block;
   width: 380px;
   height: 40px;
-  background-color: var(--secondary-color);
+  background-color: $secondary-color;
   border-radius: 75px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
 
-  color: var(--secondary-light-color);
+  color: $secondary-light-color;
   font-weight: bold;
 }
