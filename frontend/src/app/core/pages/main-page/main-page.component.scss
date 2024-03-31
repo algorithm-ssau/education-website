@@ -3,23 +3,16 @@
 @import 'functions';
 
 :host {
-  display: block;
-  height: calc(100vh - to-responsive(85px) * 2);
-}
-
-.main__home-page {
-  height: 100%;
-  @include flex($direction: column, $gap: to-responsive(20px));
+  height: calc(100vh - to-responsive(87.5px) * 2);
+  @include flex($direction: column, $gap: 20px);
 }
 
 .main__hello-text {
-  @include flex();
-
   padding: to-responsive(10px);
 
   aspect-ratio: 908 / 247;
-  width: to-responsive(908px);
-  border-radius: to-responsive(100px);
+  width: to-responsive(908px, $min: 318px);
+  border-radius: 100px;
   background-color: rgba($secondary-color, 0.35);
 
   font-family: JejuHallasan;
@@ -30,6 +23,10 @@
 
 .main__hello-image {
   display: block;
-  width: to-responsive(625px);
-  height: auto;
+  height: to-responsive(
+    500px,
+    $dimension-size: 100vh,
+    $relative-to: 1080px,
+    $min: 200px
+  );
 }
