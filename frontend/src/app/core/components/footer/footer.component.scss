@@ -15,3 +15,9 @@
   font-family: Roboto;
   font-size: 1.4rem;
 }
+@media (max-width: 500px) {
+  .footer {
+    font-size: to-responsive(16px, $relative-to: 320px);
+    aspect-ratio: 320 / 30;
+  }
+}
