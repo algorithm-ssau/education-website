@@ -30,3 +30,14 @@
     $min: 200px
   );
 }
+
+@media (max-width: 500px) {
+  .main__hello-text {
+    font-size: to-responsive(12px, $relative-to: 500px);
+  }
+
+  .main__hello-image {
+    width: 300px;
+    height: auto;
+  }
+}
