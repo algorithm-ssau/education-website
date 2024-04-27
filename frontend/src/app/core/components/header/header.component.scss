@@ -36,3 +36,12 @@
   width: to-responsive(63px);
   aspect-ratio: 63 / 65;
 }
+@media (max-width: 500px) {
+  .header {
+    aspect-ratio: 320 / 30;
+  }
+  .header__profile {
+    width: to-responsive(29px, $relative-to: 320px);
+    aspect-ratio: 29 / 30;
+  }
+}
