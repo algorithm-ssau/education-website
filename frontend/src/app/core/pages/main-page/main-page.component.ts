@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IsMobileService } from '../../services/is-mobile.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+} from '@angular/core';
 
 @Component({
   selector: 'app-main-page',
@@ -9,14 +11,10 @@ import { IsMobileService } from '../../services/is-mobile.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent {
-  isMobile$: Observable<boolean>;
-
   isMobile: boolean = false;
 
-  public constructor(isMobileService: IsMobileService) {
-    this.isMobile$ = isMobileService.isMobile;
-    isMobileService.isMobile.subscribe((newValue) => {
-      this.isMobile = newValue;
-    });
+  @HostListener('window:resize')
+  public onResize(): void {
+    this.isMobile = document.documentElement.offsetWidth <= 500;
   }
 }
