@@ -17,9 +17,6 @@
   "lint-staged": {
     "*.{js,ts}": [
       "npm run lint"
-    ],
-    "*.{js,json,css,scss,less,md,ts,html,component.html}": [
-      "prettier --write"
     ]
   },
   "private": true,
