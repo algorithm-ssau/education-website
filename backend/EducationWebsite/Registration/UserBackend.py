@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
+from .models import User
 
-class MyCustomUserBackend:
+class UserBackend:
     def authenticate(self, request, email=None, password=None):
         try:
             # Попытка найти пользователя по имени пользователя и проверить пароль
