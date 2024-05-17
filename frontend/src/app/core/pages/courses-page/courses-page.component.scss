@@ -1,0 +1,43 @@
+@import 'colors';
+@import 'mixins';
+@import 'functions';
+
+.course__find-input {
+  background-color: $secondary-dark-color;
+  color: white;
+  width: 631px;
+  height: 64px;
+  border-radius: 12px;
+  border: 0px;
+  &::-webkit-input-placeholder {
+    color: white;
+    font-family: Inter-Black;
+    padding-left: 20px;
+  }
+}
+
+.courses__loopa {
+  background-color: $secondary-dark-color;
+  border: 0px;
+  translate: -200% 30%;
+  width: 34px;
+  height: 29px;
+}
+
+.course__find-course {
+  padding-left: 1000px;
+  padding-top: 10px;
+}
+
+.btns {
+  @include flex($justify-content: space-between);
+}
+
+.courses__popularsort-btn {
+  width: 300px;
+  height: 40px;
+  border-radius: 60px;
+  background-color: $secondary-dark-color;
+  color: white;
+  font-family: Inter-Black;
+}
