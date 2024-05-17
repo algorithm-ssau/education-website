@@ -1,14 +1,15 @@
-import { debounceTime, fromEvent, map } from 'rxjs';
+import { concat, fromEvent, map, of, shareReplay } from 'rxjs';
 
 export default function CheckMobile(): PropertyDecorator {
-  const isMobile = fromEvent(window, 'resize').pipe(
-    debounceTime(100),
+  const isMobileFirst = of(window.innerWidth <= 500);
+  const isMobileRest = fromEvent(window, 'resize').pipe(
     map(() => window.innerWidth <= 500),
+    shareReplay(1),
   );
   return (target, propertyKey) => {
     Object.defineProperty(target, propertyKey, {
       get() {
-        return isMobile;
+        return concat(isMobileFirst, isMobileRest);
       },
     });
   };

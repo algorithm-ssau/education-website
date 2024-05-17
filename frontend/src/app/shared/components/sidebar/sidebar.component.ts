@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -19,7 +20,7 @@ import CheckMobile from '../../utils/is-mobile';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   @Input() public side: 'left' | 'right' = 'left';
 
   @Input() public closeOnDesktop: boolean = false;
@@ -33,10 +34,12 @@ export class SidebarComponent {
   public constructor(
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef,
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     if (this.closeOnDesktop) {
       this.isMobile$.pipe(untilDestroyed(this)).subscribe((isMobile) => {
-        if (!isMobile) this.close();
+        if (!isMobile && this.isOpen) this.close();
       });
     }
   }
