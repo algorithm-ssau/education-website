@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CourseBlockComponent } from './components/course-block/course-block.component';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
+import { EducationCourseComponent } from './components/education-course/education-course.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CoursesPageComponent } from './pages/courses-page/courses-page.componen
     MainPageComponent,
     CourseBlockComponent,
     CoursesPageComponent,
+    EducationCourseComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [HeaderComponent, FooterComponent, MainPageComponent],
