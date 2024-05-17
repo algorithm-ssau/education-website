@@ -1,4 +1,7 @@
-<p class="main__hello-text" *ngIf="!isMobile; else mobileBlock">
+<p
+  class="main__hello-text"
+  *ngIf="(isMobile$ | async) === false; else mobileBlock"
+>
   Добро пожаловать на наш сайт курсов! Мы<br />
   предлагаем возможность как проходить,так и<br />
   создавать увлекательные обучающие программы.<br />

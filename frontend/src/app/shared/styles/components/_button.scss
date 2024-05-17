@@ -1,0 +1,13 @@
+@import 'colors';
+@import 'mixins';
+@import 'functions';
+
+.app-button {
+  background-color: $secondary-color;
+  border-radius: to-responsive(75px);
+
+  @include flex();
+
+  color: $secondary-light-color;
+  font-weight: bold;
+}

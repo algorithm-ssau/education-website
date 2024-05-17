@@ -50,7 +50,8 @@
         "*.module.ts",
         "*.pipe.ts",
         "*.service.ts",
-        "*.config.ts"
+        "*.config.ts",
+        "*.directive.ts"
       ],
       "rules": {
         "import/prefer-default-export": "off"
