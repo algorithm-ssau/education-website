@@ -2,6 +2,15 @@
 @import 'mixins';
 @import 'functions';
 
+.wrap {
+  width: 499px;
+  height: 910px;
+  margin-top: 100px;
+  background-color: $secondary-color;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .course__find-input {
   background-color: $secondary-dark-color;
   color: white;
@@ -30,7 +39,9 @@
 }
 
 .btns {
-  @include flex($justify-content: space-between);
+  padding-left: 700px;
+  padding-top: 20px;
+  @include flex($justify-content: space-around);
 }
 
 .courses__popularsort-btn {
@@ -40,4 +51,25 @@
   background-color: $secondary-dark-color;
   color: white;
   font-family: Inter-Black;
+  border: 0px;
+}
+
+.courses__newsort-btn {
+  width: 300px;
+  height: 40px;
+  border-radius: 60px;
+  background-color: $secondary-dark-color;
+  color: white;
+  font-family: Inter-Black;
+  border: 0px;
+}
+
+.courses__timesort-btn {
+  width: 300px;
+  height: 40px;
+  border-radius: 60px;
+  background-color: $secondary-dark-color;
+  color: white;
+  font-family: Inter-Black;
+  border: 0px;
 }
