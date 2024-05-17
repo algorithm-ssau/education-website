@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IsMobileService } from '../../services/is-mobile.service';
 
@@ -6,6 +6,7 @@ import { IsMobileService } from '../../services/is-mobile.service';
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent {
   isMobile$: Observable<boolean>;
