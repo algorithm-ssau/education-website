@@ -34,9 +34,10 @@
       </li>
     </ul>
   </nav>
-  <button class="header__burger-menu-open">
+  <button class="header__burger-menu-open" (click)="onBurgerMenuButtonClick()">
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
   </button>
 </header>
+<app-sidebar #mobileSidebar [side]="'right'"></app-sidebar>

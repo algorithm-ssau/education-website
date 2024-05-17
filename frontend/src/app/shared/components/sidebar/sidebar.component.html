@@ -1,0 +1,20 @@
+<div
+  class="sidebar-wrapper"
+  [ngClass]="{ 'sidebar-wrapper_shown': isAnimating || isOpen }"
+>
+  <div
+    aria-hidden="true"
+    class="sidebar-background"
+    [ngClass]="{ 'sidebar-background_visible': isOpen }"
+    (click)="close()"
+  ></div>
+  <div
+    class="sidebar"
+    [ngClass]="{
+      sidebar_open: isOpen,
+      sidebar_right: side === 'right'
+    }"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>
