@@ -17,9 +17,6 @@
   "lint-staged": {
     "*.{js,ts}": [
       "npm run lint"
-    ],
-    "*.{js,json,css,scss,less,md,ts,html,component.html}": [
-      "prettier --write"
     ]
   },
   "private": true,
@@ -57,11 +54,6 @@
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
     "jest-preset-angular": "^14.0.3",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",

@@ -1,26 +1,49 @@
 @import 'colors';
 @import 'mixins';
+@import 'functions';
+
+:host {
+  height: calc(100vh - to-responsive(87.5px) * 2);
+  @include flex($direction: column, $gap: 20px);
+
+  @media (max-width: 500px) {
+    height: calc(100vh - to-responsive(32.5px, $relative-to: 320px) * 2);
+  }
+}
 
 .main__hello-text {
-  @include flex();
+  padding: to-responsive(10px);
 
-  margin: 50px auto 0;
-  padding: 10px;
-
-  width: 915px;
-  height: 250px;
+  aspect-ratio: 908 / 247;
+  width: to-responsive(908px, $min: 318px);
   border-radius: 100px;
   background-color: rgba($secondary-color, 0.35);
 
   font-family: JejuHallasan;
   color: $secondary-dark-color;
   text-align: center;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .main__hello-image {
   display: block;
-  width: auto;
-  height: 496px;
-  margin: 0 auto;
+  height: to-responsive(
+    500px,
+    $dimension-size: 100vh,
+    $relative-to: 1080px,
+    $min: 200px
+  );
+}
+
+@media (max-width: 500px) {
+  .main__hello-text {
+    font-size: to-responsive(12px, $relative-to: 320px);
+    width: to-responsive(319px, $relative-to: 320px);
+    aspect-ratio: 319 / 95;
+  }
+
+  .main__hello-image {
+    width: 300px;
+    height: auto;
+  }
 }

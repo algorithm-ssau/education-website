@@ -1,16 +1,17 @@
 @import 'colors';
 @import 'mixins';
+@import 'functions';
 
 .header {
-  width: 100vw;
-  height: 85px;
+  width: 100%;
+  aspect-ratio: 1920 / 85;
 
   background-color: $header-footer-bg;
   font-family: Roboto;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.25rem;
 
-  padding: 9.5px 15px 0;
+  padding: to-responsive(10px) to-responsive(23px);
 }
 
 .header__links {
@@ -19,13 +20,60 @@
 }
 
 .header__regular-button {
-  width: 380px;
-  height: 40px;
+  width: to-responsive(380px);
+  height: to-responsive(40px);
   background-color: $secondary-color;
-  border-radius: 75px;
+  border-radius: to-responsive(75px);
 
   @include flex();
 
   color: $secondary-light-color;
   font-weight: bold;
+}
+
+.header__home,
+.header__profile {
+  width: to-responsive(63px);
+  aspect-ratio: 63 / 65;
+}
+
+.header__burger-menu-open {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .header {
+    aspect-ratio: 320 / 30;
+
+    @include flex($justify-content: flex-end);
+  }
+
+  .header__links {
+    display: none;
+  }
+
+  .header__burger-menu-open {
+    width: 40px;
+    height: 22px;
+
+    @include flex($direction: column, $gap: 5px);
+
+    background-color: $secondary-color;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+  }
+
+  .burger-menu__bar {
+    width: 27px;
+    height: 1px;
+
+    background-color: $secondary-light-color;
+  }
+
+  .header__home,
+  .header__profile {
+    width: to-responsive(29px, $relative-to: 320px);
+    aspect-ratio: 29 / 30;
+  }
 }
