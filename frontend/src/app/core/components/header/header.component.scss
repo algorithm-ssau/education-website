@@ -1,0 +1,97 @@
+@import 'colors';
+@import 'mixins';
+@import 'functions';
+
+.header {
+  width: 100%;
+  aspect-ratio: 1920 / 85;
+
+  background-color: $header-footer-bg;
+  font-family: Roboto;
+  font-weight: 800;
+  font-size: 1.25rem;
+
+  padding: to-responsive(10px) to-responsive(23px);
+
+  &__links {
+    @include flex($justify-content: space-between);
+    list-style: none;
+  }
+
+  &__button {
+    width: to-responsive(380px);
+    height: to-responsive(40px);
+  }
+
+  &__home,
+  &__profile {
+    width: to-responsive(63px);
+    aspect-ratio: 63 / 65;
+  }
+
+  &__burger-menu-open {
+    display: none;
+  }
+
+  @media (max-width: 500px) {
+    aspect-ratio: 320 / 30;
+    @include flex($justify-content: flex-end);
+
+    &__burger-menu-open {
+      width: 40px;
+      height: 22px;
+
+      @include flex($direction: column, $gap: 5px);
+
+      background-color: $secondary-color;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .burger-menu__bar {
+      width: 27px;
+      height: 1px;
+
+      background-color: $secondary-light-color;
+    }
+
+    &__home,
+    &__profile {
+      width: to-responsive(29px, $relative-to: 320px);
+      aspect-ratio: 29 / 30;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .sidebar {
+    width: 200px;
+    padding: 20px;
+    @include flex($direction: column, $justify-content: space-between);
+  }
+}
+
+.navigation-sidebar {
+  &__links {
+    @include flex($direction: column, $gap: 15px);
+  }
+
+  &__image-links-wrapper {
+    width: 150px;
+    @include flex($justify-content: space-around);
+  }
+
+  &__button {
+    width: 150px;
+    height: 40px;
+
+    font-size: 3em;
+  }
+
+  &__hint {
+    font-size: 4em;
+    text-align: center;
+    color: $grey;
+  }
+}

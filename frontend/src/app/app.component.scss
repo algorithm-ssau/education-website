@@ -1,0 +1,9 @@
+@import 'functions';
+
+.main {
+  min-height: calc(100vh - to-responsive(87.5px) * 2);
+
+  @media (max-width: 500px) {
+    min-height: calc(100vh - to-responsive(32.5px, $relative-to: 320px) * 2);
+  }
+}
