@@ -237,7 +237,7 @@ class RefreshToken(models.Model):
 
 class Student(models.Model):
     course = models.OneToOneField(Course, models.DO_NOTHING, primary_key=True)  # The composite primary key (course_id, user_id) found, that is not supported. The first column is selected.
-    user = models.ForeignKey('User', models.DO_NOTHING, unique=True)
+    user = models.OneToOneField('User', models.DO_NOTHING)
     review_content = models.TextField(blank=True, null=True)
     review_score = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
 
