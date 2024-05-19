@@ -71,8 +71,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'EducationWebsite.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -84,7 +82,8 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-
+    'EXCEPTION_HANDLER': 'exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
 }
 
 # Password validation
