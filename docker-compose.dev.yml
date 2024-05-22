@@ -18,8 +18,6 @@ services:
         - action: rebuild
           path: frontend/src/index.html
   backend:
-    ports:
-      - 8080:8080
     environment:
       - DEBUG=True
     develop:

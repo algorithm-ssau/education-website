@@ -5,8 +5,6 @@ services:
     depends_on:
       - backend
   backend:
+    ports:
+      - 8080:8080
     build: backend/
-
-secrets:
-  db-password:
-    file: database/password.txt
