@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from datetime import timedelta
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,9 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_z*6e0s783z=3_geow_w$-t=x$hs(741j@-8@=is)i)qkn-y+4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", True)
+if type(DEBUG) is str:
+    DEBUG = DEBUG == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,13 +76,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'EducationWebsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+postgres_password = None
+if not DEBUG:
+    with open('../run/secrets/db-password', 'r') as f:
+        postgres_password = f.read()
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'postgres': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'root',
+        'PASSWORD': postgres_password,
+        'HOST': 'database',
+        'PORT': 5432,
     }
 }
+
+DATABASES['default'] = DATABASES['sqlite'] if DEBUG else DATABASES['postgres']
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'exceptions.core_exception_handler',
