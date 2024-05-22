@@ -1,0 +1,7 @@
+services:
+  backend:
+    build: backend/
+
+secrets:
+  db-password:
+    file: database/password.txt
