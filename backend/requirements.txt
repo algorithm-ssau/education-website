@@ -1,3 +1,4 @@
 Django
 djangorestframework
 PyJWT
+psycopg2-binary
