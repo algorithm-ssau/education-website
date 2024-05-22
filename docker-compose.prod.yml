@@ -1,4 +1,9 @@
 services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
   backend:
     secrets:
       - db-password
