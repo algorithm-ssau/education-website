@@ -10,9 +10,9 @@ import CheckMobile from '../../../shared/utils/is-mobile';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @ViewChild('mobileSidebar') mobileSidebar!: SidebarComponent;
+  @ViewChild('mobileSidebar') private mobileSidebar!: SidebarComponent;
 
-  @CheckMobile() isMobile$!: Observable<boolean>;
+  @CheckMobile() public isMobile$!: Observable<boolean>;
 
   public onBurgerMenuButtonClick(): void {
     this.mobileSidebar.open();
