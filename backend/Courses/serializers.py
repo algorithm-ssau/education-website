@@ -4,7 +4,7 @@ from .models import Course, TaskBlock, TheoryBlock, Enrollment
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'owner']
+        fields = ['id', 'title', 'description']
 
 class TheoryBlockSerializer(serializers.ModelSerializer):
     class Meta:
