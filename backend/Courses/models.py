@@ -23,3 +23,10 @@ class TaskBlock(models.Model):
     course = models.ForeignKey(Course, related_name='task_blocks', on_delete=models.CASCADE)
     task_text = models.TextField()
     comment = models.TextField(blank=True)
+    
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
+    enrollment_date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ('user', 'course')
