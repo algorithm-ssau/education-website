@@ -10,14 +10,12 @@ class Course(models.Model):
         return self.title
 
 class TheoryBlock(models.Model):
-    id_page =  models.UUIDField(primary_key=True)
     course = models.ForeignKey(Course, related_name='theory_blocks', on_delete=models.CASCADE)
     text = models.TextField(blank=True)
     video_url = models.URLField(blank=True)
     image = models.ImageField(upload_to='theory_images/', blank=True)
     captioned_image = models.ImageField(upload_to='captioned_images/', blank=True)
     caption = models.CharField(max_length=300, blank=True)
-    page_number = models.IntegerField(default=1)
 
 class TaskBlock(models.Model):
     course = models.ForeignKey(Course, related_name='task_blocks', on_delete=models.CASCADE)

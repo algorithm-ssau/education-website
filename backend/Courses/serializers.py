@@ -9,12 +9,12 @@ class CourseSerializer(serializers.ModelSerializer):
 class TheoryBlockSerializer(serializers.ModelSerializer):
     class Meta:
         model = TheoryBlock
-        fields = ['id_page', 'course', 'text', 'video_url', 'image', 'captioned_image', 'caption', 'page_number']
+        fields = ['text', 'video_url', 'image', 'captioned_image', 'caption']
 
 class TaskBlockSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskBlock
-        fields = ['id', 'course', 'task_text', 'comment']
+        fields = ['id', 'task_text', 'comment']
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:

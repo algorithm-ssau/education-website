@@ -15,20 +15,22 @@ class TaskBlockCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        course = serializer.validated_data['course']
+        course_id = self.kwargs.get('course_id')
+        course = Course.objects.get(id=course_id)
         if course.owner != self.request.user:
             raise PermissionDenied("Вы не можете размещать материалы, т.к. вы не владелец курса.")
-        serializer.save()
+        serializer.save(course=course)
 
 class TheoryBlockCreateView(generics.CreateAPIView):
     serializer_class = TheoryBlockSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        course = serializer.validated_data['course']
+        course_id = self.kwargs['course_id']
+        course = Course.objects.get(id=course_id)
         if course.owner != self.request.user:
             raise PermissionDenied("Вы не можете размещать материалы, т.к. вы не владелец курса.")
-        serializer.save()
+        serializer.save(course=course)
 
 class UserCoursesListView(generics.ListAPIView):
     serializer_class = CourseSerializer
