@@ -8,7 +8,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { ButtonDirective } from '../shared/components/button/button.directive';
-import { ModalComponent } from '../shared/components/modal/modal.component';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, MainPageComponent],
@@ -16,7 +15,6 @@ import { ModalComponent } from '../shared/components/modal/modal.component';
     CommonModule,
     RouterModule,
     SidebarComponent,
-    ModalComponent,
     ButtonComponent,
     ButtonDirective,
   ],

@@ -5,7 +5,17 @@ import { NotFoundPageComponent } from './core/pages/not-found-page/not-found-pag
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
     component: MainPageComponent,
+  },
+  {
+    path: 'auth',
+    outlet: 'modal',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',

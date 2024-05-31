@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
+import { ActivatedRoute } from '@angular/router';
 import CheckMobile from '../../../shared/utils/is-mobile';
 
 @Component({
@@ -10,11 +10,7 @@ import CheckMobile from '../../../shared/utils/is-mobile';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @ViewChild('mobileSidebar') private mobileSidebar!: SidebarComponent;
-
   @CheckMobile() public isMobile$!: Observable<boolean>;
 
-  public onBurgerMenuButtonClick(): void {
-    this.mobileSidebar.open();
-  }
+  public constructor(public route: ActivatedRoute) {}
 }

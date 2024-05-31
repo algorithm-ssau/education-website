@@ -4,6 +4,8 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -15,6 +17,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
+  @Output() public closed = new EventEmitter();
+
   public isOpen: boolean = false;
 
   public isAnimating: boolean = false;
@@ -32,6 +36,7 @@ export class ModalComponent {
   public close(): void {
     this.isOpen = false;
     this.animateChangingState();
+    this.closed.emit();
   }
 
   private animateChangingState(): void {
