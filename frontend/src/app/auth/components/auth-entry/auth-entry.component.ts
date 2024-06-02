@@ -33,8 +33,6 @@ export class AuthEntryComponent implements AfterViewInit {
   }
 
   public onModalClose(): void {
-    setTimeout(() => {
-      this.router.navigate([{ outlets: { modal: null } }]);
-    }, 300);
+    this.router.navigate([{ outlets: { modal: null } }]);
   }
 }

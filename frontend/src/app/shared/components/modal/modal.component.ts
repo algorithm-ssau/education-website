@@ -36,7 +36,6 @@ export class ModalComponent {
   public close(): void {
     this.isOpen = false;
     this.animateChangingState();
-    this.closed.emit();
   }
 
   private animateChangingState(): void {
@@ -47,6 +46,7 @@ export class ModalComponent {
       () => {
         this.isAnimating = false;
         this.changeDetector.detectChanges();
+        if (!this.isOpen) this.closed.emit();
       },
       { once: true },
     );

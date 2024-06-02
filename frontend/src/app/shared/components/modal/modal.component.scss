@@ -77,7 +77,6 @@
     padding: 5px;
 
     cursor: pointer;
-    transition: scale $transition-parameters;
 
     display: block;
     margin-left: auto;
@@ -87,7 +86,7 @@
     border-radius: 20px;
 
     &:hover {
-      scale: 1.1;
+      scale: 1.05;
     }
   }
 
