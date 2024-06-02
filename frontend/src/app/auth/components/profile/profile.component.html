@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<form class="profile" [formGroup]="formGroup">
+  <h2 class="profile__heading">Профиль</h2>
+  <app-input
+    [placeholder]="'Логин'"
+    [control]="formGroup.controls.username"
+  ></app-input>
+  <app-input
+    [placeholder]="'Почта'"
+    [control]="formGroup.controls.email"
+  ></app-input>
+  <app-input
+    [type]="'password'"
+    [placeholder]="'Новый либо старый пароль'"
+    [control]="formGroup.controls.password"
+  ></app-input>
+  <button class="profile__edit-button" (click)="onEditToggle()">
+    {{ isEditable ? 'Сохранить' : 'Редактировать' }}
+  </button>
+</form>

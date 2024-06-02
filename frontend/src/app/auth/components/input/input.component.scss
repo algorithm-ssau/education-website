@@ -30,6 +30,16 @@
   &.ng-invalid.ng-dirty {
     outline: rgb(204, 32, 32) solid 1px;
   }
+
+  &[disabled] {
+    background-color: #bdf5ff;
+    color: $secondary-dark-color;
+    border: 2px solid;
+
+    &::placeholder {
+      color: $secondary-dark-color;
+    }
+  }
 }
 
 .validation-message {

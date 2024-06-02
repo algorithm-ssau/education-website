@@ -1,0 +1,27 @@
+@import 'colors';
+@import 'mixins';
+
+.profile {
+  @include flex($direction: column, $gap: 20px);
+
+  font-family: Inter;
+  color: $secondary-light-color;
+
+  &__heading {
+    font-size: max(2rem, 15px);
+    text-shadow: 2px 4px 5px rgba(black, 0.5);
+  }
+
+  &__edit-button {
+    cursor: pointer;
+
+    width: max(50%, 200px);
+    height: 40px;
+
+    color: $secondary-light-color;
+    background-color: $header-footer-bg;
+
+    border: 2px solid $secondary-dark-color;
+    border-radius: 10px;
+  }
+}
