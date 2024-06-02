@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import UserDto from '../models/user-dto.model';
 import UserResponse from '../models/user-response.model';
+import Endpoints from '../../redux/enums/endpoints';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthService {
 
   public login(user: UserDto): Observable<string> {
     return this.httpClient
-      .post<UserResponse>('users/login/', {
+      .post<UserResponse>(Endpoints.Login, {
         user,
       })
       .pipe(map(({ user: { token } }) => token));
@@ -20,7 +21,7 @@ export class AuthService {
 
   public register(user: UserDto): Observable<string> {
     return this.httpClient
-      .post<UserResponse>('users/', {
+      .post<UserResponse>(Endpoints.Register, {
         user,
       })
       .pipe(map(({ user: { token } }) => token));

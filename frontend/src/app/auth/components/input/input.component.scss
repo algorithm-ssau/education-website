@@ -20,7 +20,7 @@
 
   &,
   &::placeholder {
-    color: $secondary-light-color;
+    color: rgba($secondary-light-color, 0.5);
   }
 
   &:focus {
