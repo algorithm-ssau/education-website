@@ -10,7 +10,7 @@ services:
     depends_on:
       - database
     environment:
-      - DEBUG=False
+      - DEBUG=True
   database:
     build: database/
     secrets:
