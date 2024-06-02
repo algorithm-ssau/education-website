@@ -16,7 +16,7 @@
   grid-column: 1;
   grid-row: 1 / span 2;
   height: 192px;
-  width: 263px;
+  width:to-responsive(263px) ;
 }
 .course__block-name {
   grid-column: 2;
