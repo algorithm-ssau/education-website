@@ -40,7 +40,9 @@ export class LoginFormComponent {
         });
     } else {
       this.toastrService.error('Пожалуйста, заполните форму корректно');
-      this.formGroup.markAllAsTouched();
+      Object.values(this.formGroup.controls).forEach((control) => {
+        control.markAsDirty();
+      });
     }
   }
 }

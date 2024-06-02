@@ -3,4 +3,6 @@
   [type]="type"
   [placeholder]="placeholder"
   [formControl]="control"
+  (ngModelChange)="onValueChange()"
 />
+<span class="validation-message">{{ errorMessage }}</span>

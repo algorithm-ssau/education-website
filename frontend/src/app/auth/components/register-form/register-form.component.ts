@@ -43,7 +43,9 @@ export class RegisterFormComponent {
           this.toastrService.success('Вы успешно зарегистрировались');
         });
     } else {
-      this.formGroup.markAllAsTouched();
+      Object.values(this.formGroup.controls).forEach((control) => {
+        control.markAsDirty();
+      });
       this.toastrService.error('Пожалуйста, заполните форму корректно');
     }
   }
