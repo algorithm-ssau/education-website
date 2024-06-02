@@ -73,7 +73,8 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "poll": 1000
             }
           },
           "defaultConfiguration": "production"

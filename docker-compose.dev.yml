@@ -1,0 +1,31 @@
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+    ports:
+      - 80:4200
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - frontend/node_modules
+        - action: rebuild
+          path: frontend/package.json
+        - action: rebuild
+          path: frontend/angular.json
+        - action: rebuild
+          path: frontend/src/index.html
+  backend:
+    environment:
+      - DEBUG=True
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: /app
+          ignore:
+            - backend/__pycache__/
+            - backend/EducationWebsite/__pycache__/
+            - backend/Registration/__pycache__/

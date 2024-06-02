@@ -1,5 +1,5 @@
 <header class="header">
-  <nav class="header__navigaton">
+  <nav class="header__navigaton" *ngIf="(isMobile$ | async) !== true">
     <ul class="header__links">
       <li class="header__link">
         <a routerLink=""
@@ -10,17 +10,17 @@
         /></a>
       </li>
       <li class="header__link">
-        <a class="header__regular-button" routerLink="profile/courses"
+        <a appButton class="header__button" routerLink="profile/courses"
           >Мои курсы</a
         >
       </li>
       <li class="header__link">
-        <a class="header__regular-button" routerLink="courses"
+        <a appButton class="header__button" routerLink="courses"
           >Записаться на курс</a
         >
       </li>
       <li class="header__link">
-        <a class="header__regular-button" routerLink="profile/create-course"
+        <a appButton class="header__button" routerLink="profile/create-course"
           >Создать курс</a
         >
       </li>
@@ -34,9 +34,61 @@
       </li>
     </ul>
   </nav>
-  <button class="header__burger-menu-open">
+  <button class="header__burger-menu-open" (click)="onBurgerMenuButtonClick()">
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
   </button>
 </header>
+
+<app-sidebar
+  class="navigation-sidebar"
+  #mobileSidebar
+  [side]="'right'"
+  [closeOnDesktop]="true"
+>
+  <nav class="navigation-sidebar__navigation" *ngIf="isMobile$ | async">
+    <ul class="navigation-sidebar__links">
+      <li class="navigation-sidebar__link">
+        <div class="navigation-sidebar__image-links-wrapper">
+          <a routerLink=""
+            ><img
+              src="../../../../assets/images/home-button.png"
+              alt="Home button"
+              class="header__home"
+          /></a>
+          <a routerLink="profile"
+            ><img
+              src="../../../../assets/images/profile-button.png"
+              alt="Profile button"
+              class="header__profile"
+          /></a>
+        </div>
+      </li>
+      <li class="navigation-sidebar__link">
+        <a
+          appButton
+          class="navigation-sidebar__button"
+          routerLink="profile/courses"
+          >Мои курсы</a
+        >
+      </li>
+      <li class="navigation-sidebar__link">
+        <a appButton class="navigation-sidebar__button" routerLink="courses"
+          >Записаться на курс</a
+        >
+      </li>
+      <li class="navigation-sidebar__link">
+        <a
+          appButton
+          class="navigation-sidebar__button"
+          routerLink="profile/create-course"
+          >Создать курс</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <p class="navigation-sidebar__hint">
+    нажмите на тёмную часть экрана, чтобы закрыть меню
+  </p>
+</app-sidebar>

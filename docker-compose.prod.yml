@@ -1,4 +1,16 @@
 services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
+  backend:
+    secrets:
+      - db-password
+    depends_on:
+      - database
+    environment:
+      - DEBUG=False
   database:
     build: database/
     secrets:
@@ -6,10 +18,7 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    ports:
-      - 54321:5432
 
 secrets:
   db-password:
     file: database/password.txt
-  

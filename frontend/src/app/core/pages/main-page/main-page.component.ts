@@ -1,8 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import CheckMobile from '../../../shared/utils/is-mobile';
 
 @Component({
   selector: 'app-main-page',
@@ -11,10 +9,5 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent {
-  isMobile: boolean = false;
-
-  @HostListener('window:resize')
-  public onResize(): void {
-    this.isMobile = document.documentElement.offsetWidth <= 500;
-  }
+  @CheckMobile() isMobile$!: Observable<boolean>;
 }
