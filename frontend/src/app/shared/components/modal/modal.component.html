@@ -1,0 +1,21 @@
+<div class="modal" [ngClass]="{ modal_shown: isOpen || isAnimating }">
+  <div
+    aria-hidden="true"
+    class="modal__background"
+    [ngClass]="{ modal__background_visible: isOpen }"
+    (click)="close()"
+  ></div>
+  <div
+    class="modal__inner"
+    [ngClass]="{
+      modal__inner_open: isOpen
+    }"
+  >
+    <div class="modal__content">
+      <button class="modal__close-button" (click)="close()">
+        <i class="fa fa-xmark"></i>
+      </button>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
