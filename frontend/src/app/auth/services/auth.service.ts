@@ -12,7 +12,7 @@ export class AuthService {
 
   public login(user: UserDto): Observable<string> {
     return this.httpClient
-      .post<UserResponse>('users/login', {
+      .post<UserResponse>('users/login/', {
         user,
       })
       .pipe(map(({ user: { token } }) => token));

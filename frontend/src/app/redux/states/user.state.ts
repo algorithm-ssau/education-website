@@ -6,6 +6,7 @@ import Logout from '../actions/logout.action';
 import LocalStorageHelper from '../utils/local-storage-helper';
 import LocalStorageStates from '../enums/local-storage-key';
 import { AuthService } from '../../auth/services/auth.service';
+import Register from '../actions/register.action';
 
 @State<string>({
   name: 'user',
@@ -22,7 +23,25 @@ export default class UserState {
       take(1),
       tap((token) => {
         LocalStorageHelper.SetItem(LocalStorageStates.User, token);
-        ctx.patchState(token);
+        ctx.setState(token);
+      }),
+      catchError(() => {
+        return EMPTY;
+      }),
+    );
+  }
+
+  @Action(Register)
+  public register(
+    ctx: StateContext<string>,
+    action: Register,
+  ): Observable<string> {
+    const { email, username, password } = action;
+    return this.authService.register({ email, username, password }).pipe(
+      take(1),
+      tap((token) => {
+        LocalStorageHelper.SetItem(LocalStorageStates.User, token);
+        ctx.setState(token);
       }),
       catchError(() => {
         return EMPTY;

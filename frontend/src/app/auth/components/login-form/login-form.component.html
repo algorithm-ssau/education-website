@@ -1,1 +1,16 @@
-<p>login-form works!</p>
+<form class="login-form" [formGroup]="formGroup" (submit)="onSubmit()">
+  <h2 class="login-form__heading">Логин</h2>
+  <app-input
+    [placeholder]="'Почта'"
+    [control]="formGroup.controls.email"
+  ></app-input>
+  <app-input
+    [type]="'password'"
+    [placeholder]="'Пароль'"
+    [control]="formGroup.controls.password"
+  ></app-input>
+  <app-submit-button [value]="'Войти'"></app-submit-button>
+  <app-help-link [link]="'../register'"
+    >Ещё не зарегистрировались?</app-help-link
+  >
+</form>
