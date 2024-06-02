@@ -59,7 +59,10 @@
               alt="Home button"
               class="header__home"
           /></a>
-          <a routerLink="profile"
+          <a
+            [routerLink]="[{ outlets: { modal: ['auth', 'profile'] } }]"
+            [relativeTo]="route"
+            (click)="mobileSidebar.close()"
             ><img
               src="../../../../assets/images/profile-button.png"
               alt="Profile button"
