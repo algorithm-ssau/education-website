@@ -25,7 +25,9 @@
         >
       </li>
       <li class="header__link">
-        <a routerLink="profile"
+        <a
+          [routerLink]="[{ outlets: { modal: ['auth', 'profile'] } }]"
+          [relativeTo]="route"
           ><img
             src="../../../../assets/images/profile-button.png"
             alt="Profile button"
@@ -34,7 +36,7 @@
       </li>
     </ul>
   </nav>
-  <button class="header__burger-menu-open" (click)="onBurgerMenuButtonClick()">
+  <button class="header__burger-menu-open" (click)="mobileSidebar.open()">
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
     <div class="burger-menu__bar"></div>
@@ -57,7 +59,10 @@
               alt="Home button"
               class="header__home"
           /></a>
-          <a routerLink="profile"
+          <a
+            [routerLink]="[{ outlets: { modal: ['auth', 'profile'] } }]"
+            [relativeTo]="route"
+            (click)="mobileSidebar.close()"
             ><img
               src="../../../../assets/images/profile-button.png"
               alt="Profile button"

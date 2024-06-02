@@ -31,6 +31,10 @@ if type(DEBUG) is str:
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost',
+)
+
 
 # Application definition
 
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Registration.apps.RegistrationConfig',
     'rest_framework',
+    'corsheaders',
     'Courses.apps.CoursesConfig',
 ]
 
@@ -54,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'EducationWebsite.urls'

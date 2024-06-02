@@ -1,4 +1,4 @@
-$transition: ease-in-out 0.3s;
+@import 'variables';
 
 .sidebar-wrapper {
   position: fixed;
@@ -18,7 +18,7 @@ $transition: ease-in-out 0.3s;
 
   background-color: black;
   opacity: 0;
-  transition: opacity $transition;
+  transition: opacity $transition-parameters;
 
   &_visible {
     opacity: 0.5;
@@ -36,7 +36,7 @@ $transition: ease-in-out 0.3s;
   left: 0;
   z-index: 999;
 
-  transition: translate $transition;
+  transition: translate $transition-parameters;
 
   &_right {
     left: auto;

@@ -11,3 +11,9 @@
 a {
   text-decoration: none;
 }
+
+form.ng-valid .submit-button {
+  background-color: $secondary-light-color;
+  color: $secondary-dark-color;
+  border: 2px solid;
+}

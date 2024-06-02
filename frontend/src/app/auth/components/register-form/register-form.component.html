@@ -1,0 +1,18 @@
+<form class="register-form" [formGroup]="formGroup" (submit)="onSubmit()">
+  <h2 class="register-form__heading">Регистрация</h2>
+  <app-input
+    [placeholder]="'Логин'"
+    [control]="formGroup.controls.login"
+  ></app-input>
+  <app-input
+    [placeholder]="'Почта'"
+    [control]="formGroup.controls.email"
+  ></app-input>
+  <app-input
+    [type]="'password'"
+    [placeholder]="'Пароль'"
+    [control]="formGroup.controls.password"
+  ></app-input>
+  <app-submit-button [value]="'Зарегистрироваться'"></app-submit-button>
+  <app-help-link [link]="'../login'">Уже зарегистрировались?</app-help-link>
+</form>
