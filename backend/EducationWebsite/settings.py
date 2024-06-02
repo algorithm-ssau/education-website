@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'Registration.apps.RegistrationConfig',
     'rest_framework',
     'corsheaders',
+    'Courses.apps.CoursesConfig',
 ]
 
 MIDDLEWARE = [
