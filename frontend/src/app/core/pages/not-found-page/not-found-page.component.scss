@@ -2,11 +2,11 @@
 @import 'mixins';
 @import 'functions';
 .class-404{
-    width: 500px;
+    width: to-responsive(500px);
     height: auto;
    align-items: center;
-   margin-left: 800px;
-    margin-top: 50px;
+   margin-left: to-responsive(700px);
+    margin-top: to-responsive(50px);
 }
 
 //.error-text{
@@ -55,9 +55,9 @@ body {
 
 .content h2 {
   color: #fff;
-  margin-top: 80px;
-  margin-left: 1050px;
-  font-size: 30px;
+  margin-top: to-responsive(80px);
+  margin-left: to-responsive(940px);
+  font-size: to-responsive(30px);
   position: absolute;
   transform: translate(-50%, -50%);
 }
@@ -78,8 +78,8 @@ body {
   
   .error-404-anim h2 {
     color: #fff;
-    margin-left: 1030px;
-    font-size: 30px;
+    margin-left: to-responsive(920px);
+    font-size: to-responsive(30px);
     position: absolute;
     transform: translate(-50%, -50%);
   }
@@ -100,9 +100,9 @@ body {
   
   .error h2 {
     color: #fff;
-    margin-top: 80px;
-    margin-left: 1050px;
-    font-size: 30px;
+    margin-top: to-responsive(80px);
+    margin-left: to-responsive(940px);
+    font-size: to-responsive(30px);
     position: absolute;
     transform: translate(-50%, -50%);
   }
