@@ -1,10 +1,14 @@
+@import 'colors';
+@import 'mixins';
+@import 'functions';
 .class-404{
     width: 500px;
     height: auto;
    align-items: center;
    margin-left: 800px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
+
 //.error-text{
 //color:red;
 //font-size: 50px;
@@ -17,9 +21,7 @@
    // margin-top: 50px;
     
 //}
-//.error{
- //   margin-top: 20px;
-//}
+
 
 //.error1{
  //   width: 100%;
@@ -31,7 +33,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
 * {
-  margin:50px;
+  margin:0px;
   padding:0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -39,11 +41,13 @@
 
 body {
   display: flex;
+  flex-direction: column;
   background: #000;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
 }
+
 
 .content {
   position: relative;
@@ -51,7 +55,8 @@ body {
 
 .content h2 {
   color: #fff;
-  margin-left: 950px;
+  margin-top: 80px;
+  margin-left: 1050px;
   font-size: 30px;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -64,8 +69,52 @@ body {
 
 .content h2:nth-child(2) {
   color: black;
-  animation: animate 4s ease-in-out infinite;
+
 }
+
+.error-404-anim {
+    position: relative;
+  }
+  
+  .error-404-anim h2 {
+    color: #fff;
+    margin-left: 1030px;
+    font-size: 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  
+  .error-404-anim h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px red;
+  }
+  
+  .error-404-anim h2:nth-child(2) {
+    color: red;
+    animation: animate 4s ease-in-out infinite;
+  }
+
+  .error {
+    position: relative;
+  }
+  
+  .error h2 {
+    color: #fff;
+    margin-top: 80px;
+    margin-left: 1050px;
+    font-size: 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  
+  .error h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px black;
+  }
+  
+  .error h2:nth-child(2) {
+    color: black;
+  }
 
 @keyframes animate {
   0%,
