@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost',
+  'http://81.94.156.94'
 )
 
 
