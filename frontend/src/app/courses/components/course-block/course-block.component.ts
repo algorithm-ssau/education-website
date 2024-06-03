@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import CourseDto from '../../models/course-dto.model';
 
 @Component({
   selector: 'app-course-block',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './course-block.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseBlockComponent {}
+export class CourseBlockComponent {
+  @Input({ required: true }) course!: CourseDto;
+}

@@ -2,6 +2,11 @@
 @import 'colors';
 @import 'mixins';
 
+:host {
+  position: relative;
+  z-index: 9999;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -35,9 +40,6 @@
   &__inner {
     padding: 20px;
     width: max(300px, 40%);
-
-    position: relative;
-    z-index: 9999;
 
     translate: 0 -25vh;
     opacity: 0;

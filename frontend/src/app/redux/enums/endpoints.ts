@@ -1,7 +1,9 @@
 enum Endpoints {
-  Login = 'users/login/',
-  Register = 'users/',
-  User = 'user',
+  Login = 'api/users/login/',
+  Register = 'api/users/',
+  User = 'api/user',
+  CreateCourse = 'create_course/',
+  MyCourses = 'my_courses/',
 }
 
 export default Endpoints;

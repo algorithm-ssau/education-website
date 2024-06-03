@@ -1,47 +1,53 @@
-<form class="course__find-course">
-  <div>
-    <label>
-      <input class="course__find-input" type="text" placeholder="Найти курс " />
-      <button class="courses__loopa">
-        <img
-          type="image"
-          src="../../../../assets/images/loopa.png"
-          alt="Find course"
-        />
+<div class="sidebar">
+  <div class="sidebar__tag tag" *ngFor="let tag of tags">
+    <p class="tag__name">{{ tag }}</p>
+    <input
+      type="checkbox"
+      class="tag__select"
+      id="scales"
+      name="scales"
+      checked
+    />
+  </div>
+</div>
+<div class="page">
+  <form class="course-search">
+    <label class="course-search__input-wrapper">
+      <input
+        class="course-search__find-input"
+        type="text"
+        placeholder="Найти курс "
+      />
+      <button class="course-search__loopa">
+        <img type="image" src="assets/images/loopa.png" alt="Find course" />
       </button>
     </label>
+    <div class="course-search__sort-criterias">
+      <button class="courses__popularsort-btn">по популярности</button>
+      <button class="courses__newsort-btn">по новизне</button>
+      <button class="courses__timesort-btn">по времени прохождения</button>
+    </div>
+  </form>
+
+  <div class="course-blocks">
+    <app-course-block
+      class="course-card"
+      [course]="course"
+      *ngFor="let course of myCourses"
+    ></app-course-block>
   </div>
-</form>
 
+  <div class="pagination" *ngIf="coursesNotEmpty; else noCourses">
+    <button class="pagination__button">
+      <img type="image" src="assets/images/slide-left.png" alt="Left" />
+    </button>
 
-
-<div class="btns">
-  <button class="courses__popularsort-btn">по популярности</button>
-  <button class="courses__newsort-btn">по новизне</button>
-  <button class="courses__timesort-btn">по времени прохождения</button>
+    <button class="pagination__button" *ngIf="coursesNotEmpty">
+      <img type="image" src="assets/images/slide-right.png" alt="Right" />
+    </button>
+  </div>
 </div>
 
-<app-course-block> </app-course-block>
-<app-course-block> </app-course-block>
-<app-course-block> </app-course-block>
-
-<div class= "slide-buttons"><button class="slide-button1">
-  <img
-  type="image"
-  src="../../../../assets/images/slide-left.png"
-  alt="Left"/></button>
-
-  <button class="slide-button2">
-    <img
-    type="image"
-    src="../../../../assets/images/slide-right.png"
-    alt="Right"/></button></div>
-
-
-<div class="wrap">
-  <app-education-course></app-education-course>
-  <app-education-course></app-education-course>
-  <app-education-course></app-education-course>
-  <app-education-course></app-education-course>
-  <app-education-course></app-education-course>
-</div>
+<ng-template #noCourses>
+  <p class="no-courses">У вас нет созданных курсов</p>
+</ng-template>

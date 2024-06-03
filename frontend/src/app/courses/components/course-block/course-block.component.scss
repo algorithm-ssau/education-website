@@ -2,41 +2,41 @@
 @import 'mixins';
 @import 'functions';
 
-.course__table1 {
-  box-shadow: 0px 0px 8px 8px rgba(40,107,207, 0.5);
+.course {
+  box-shadow: 0px 0px 8px 8px rgba(40, 107, 207, 0.5);
   border: 3px solid $secondary-dark-color;
-  margin-top: 25px;
-  margin-left: 515px;
-  margin-right: 10px;
   display: grid;
-  grid-template-columns: 263px 1128px;
-}
-.course__block-photo {
-  background-color: $secondary-color;
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  height: 192px;
-  width:to-responsive(263px) ;
-}
-.course__block-name {
-  grid-column: 2;
-  grid-row: 1;
-  height: 58px;
-  border-bottom: 5px solid $secondary-dark-color;
-  border-left: 5px solid $secondary-dark-color;
-  padding-left: 10px;
-  padding-top: 15px;
-  background-color: $secondary-color;
-  color: white;
-}
-.course__block-description {
-  grid-column-start: 2;
-  grid-row: 2 / span 1;
-  height: 134px;
-  border: 1px;
-  border-left: 5px solid $secondary-dark-color;
-  padding-left: 10px;
-  padding-top: 50px;
-  background-color: $secondary-color;
-  color: white;
+  grid-template-columns: 1fr 4fr;
+
+  &__image {
+    background-color: $secondary-color;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    height: 192px;
+    width: to-responsive(263px);
+  }
+
+  &__name {
+    grid-column: 2;
+    grid-row: 1;
+    height: 58px;
+    border-bottom: 5px solid $secondary-dark-color;
+    border-left: 5px solid $secondary-dark-color;
+    padding-left: 10px;
+    padding-top: 15px;
+    background-color: $secondary-color;
+    color: white;
+  }
+
+  &__description {
+    grid-column-start: 2;
+    grid-row: 2 / span 1;
+    height: 134px;
+    border: 1px;
+    border-left: 5px solid $secondary-dark-color;
+    padding-left: 10px;
+    padding-top: 50px;
+    background-color: $secondary-color;
+    color: white;
+  }
 }
