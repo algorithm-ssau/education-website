@@ -9,9 +9,14 @@ const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let message: string | null = null;
+      const emailErrors = error.error.errors.email as string[];
       switch (true) {
-        case error.url?.endsWith(Endpoints.Register):
+        case error.url?.endsWith(Endpoints.Register) &&
+          emailErrors[0] === 'user with this email already exists.':
           message = 'Пользователь с таким email уже существует';
+          break;
+        case error.url?.endsWith(Endpoints.Register):
+          message = 'Email введён некорректно';
           break;
         case error.url?.endsWith(Endpoints.Login):
           message = 'Неправильный логин или пароль';

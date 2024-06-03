@@ -89,9 +89,11 @@
     font-size: 3em;
   }
 
-  &__hint {
-    font-size: 4em;
-    text-align: center;
-    color: $grey;
+  @media (max-width: 500px) {
+    &__hint {
+      font-size: 4em;
+      text-align: center;
+      color: $grey;
+    }
   }
 }

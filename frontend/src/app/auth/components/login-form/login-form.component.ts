@@ -35,8 +35,10 @@ export class LoginFormComponent {
       this.store
         .dispatch(new Login(email, '', password))
         .subscribe((newState: { user: string }) => {
-          if (newState.user) this.closeService.emitCloseEvent();
-          this.toastrService.success('Вы успешно вошли в аккаунт');
+          if (newState.user) {
+            this.closeService.emitCloseEvent();
+            this.toastrService.success('Вы успешно вошли в аккаунт');
+          }
         });
     } else {
       this.toastrService.error('Пожалуйста, заполните форму корректно');

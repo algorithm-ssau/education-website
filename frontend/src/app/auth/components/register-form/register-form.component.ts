@@ -39,8 +39,10 @@ export class RegisterFormComponent {
       this.store
         .dispatch(new Register(email, login, password))
         .subscribe((newState: { user: string }) => {
-          if (newState.user) this.closeNotificationService.emitCloseEvent();
-          this.toastrService.success('Вы успешно зарегистрировались');
+          if (newState.user) {
+            this.closeNotificationService.emitCloseEvent();
+            this.toastrService.success('Вы успешно зарегистрировались');
+          }
         });
     } else {
       Object.values(this.formGroup.controls).forEach((control) => {
