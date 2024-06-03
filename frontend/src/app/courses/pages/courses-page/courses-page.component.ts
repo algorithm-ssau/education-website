@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { take } from 'rxjs';
 import { CoursesService } from '../../services/courses.service';
 import CourseDto from '../../models/course-dto.model';
@@ -24,12 +28,16 @@ export class CoursesPageComponent {
 
   public myCourses: CourseDto[] = [];
 
-  public constructor(coursesService: CoursesService) {
+  public constructor(
+    coursesService: CoursesService,
+    changeDetectorRef: ChangeDetectorRef,
+  ) {
     coursesService
       .getMyCourses()
       .pipe(take(1))
       .subscribe((courses) => {
         this.myCourses = courses;
+        changeDetectorRef.detectChanges();
       });
   }
 }

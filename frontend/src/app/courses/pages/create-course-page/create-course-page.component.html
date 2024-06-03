@@ -1,0 +1,19 @@
+<form class="create-course-form" [formGroup]="formGroup" (submit)="onSubmit()">
+  <input
+    type="text"
+    class="create-course-form__input"
+    placeholder="Название курса"
+    formControlName="title"
+  />
+  <input
+    type="text"
+    class="create-course-form__input"
+    placeholder="Скажите, кому подойдёт Ваш курс"
+    formControlName="description"
+  />
+  <input
+    type="submit"
+    class="create-course-form__button"
+    value="Создать курс"
+  />
+</form>

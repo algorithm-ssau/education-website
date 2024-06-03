@@ -1,0 +1,77 @@
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host {
+  @include flex();
+  height: calc(100vh - 100px);
+}
+
+.create-course-form {
+  background-image: url('../../../../assets/images/компик.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 75%;
+  aspect-ratio: 836 / 694;
+
+  @include flex($direction: column, $gap: 20px);
+  width: max(300px, 60vw);
+  height: 90%;
+
+  margin-bottom: 50px;
+
+  @media (min-width: 1200px) {
+    & > * {
+      translate: 0 -70px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    background-position: center center;
+  }
+
+  &__input {
+    width: 60%;
+    height: 50px;
+    padding-left: 0.5em;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: $secondary-dark-color;
+
+    outline: transparent solid 2px;
+    transition: outline-color $transition-parameters;
+
+    &,
+    &::placeholder {
+      color: rgba($secondary-light-color, 0.5);
+    }
+
+    &:focus {
+      outline-color: $secondary-light-color;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+
+    width: 50%;
+    height: 40px;
+
+    border-radius: 20px;
+    border: none;
+
+    color: $secondary-light-color;
+    background-color: $secondary-dark-color;
+
+    transition:
+      scale $transition-parameters,
+      background-color $transition-parameters,
+      color $transition-parameters;
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
+}
